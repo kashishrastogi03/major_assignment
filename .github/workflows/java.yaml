@@ -24,7 +24,7 @@ jobs:
 
       - name: Upload JUnit Test Results
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: junit-results
           path: '**/target/surefire-reports/TEST-*.xml'
