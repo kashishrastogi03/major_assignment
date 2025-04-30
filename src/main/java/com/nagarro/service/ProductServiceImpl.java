@@ -24,13 +24,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
    public void save(Product product) {
-        System.out.println("Saving");
         productDao.save(product);  // JPA/Hibernate will handle insert/update
     }
 
     @Override
     public void saveProduct(Product product, MultipartFile file) throws IOException {
-        System.out.println("Saving.....");
 
         try {
             if (!file.isEmpty()) {
@@ -41,7 +39,6 @@ public class ProductServiceImpl implements ProductService {
             } else {
                 product.setImage("/images/default.png"); // fallback
             }
-            System.out.println("product is being");
             productDao.save(product);
         } catch (Exception e) {
             e.printStackTrace(); // print exception
@@ -51,7 +48,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void updateProduct(Product product, MultipartFile file) throws IOException {
-        System.out.println("UPdating");
         if (!file.isEmpty()) {
             String filename = file.getOriginalFilename();
             Path path = Paths.get(UPLOAD_DIR + filename);
@@ -64,7 +60,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void deleteProduct(int id) {
         if (productDao.existsById(id)) {
-            System.out.println("hello my dear");
             productDao.deleteById(id);
         } else {
             throw new IllegalArgumentException("Product with ID " + id + " does not exist.");
