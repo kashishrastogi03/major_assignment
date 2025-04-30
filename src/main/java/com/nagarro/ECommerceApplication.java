@@ -14,7 +14,7 @@ public class ECommerceApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("Application started! Access it at http://localhost:9091/login");
+        System.out.println("Application started! Access it at http://localhost:9093/login");
     }
 
     @Bean
