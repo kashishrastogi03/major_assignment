@@ -40,8 +40,8 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@v2
         with:
           args: >
-            -Dsonar.projectKey=kashishrastogi03_major_assignment
-            -Dsonar.organization=kashishrastogi03
+            -Dsonar.projectKey=major-assignment_major-assignment
+            -Dsonar.organization=major-assignment
             -Dsonar.host.url=https://sonarcloud.io
             -Dsonar.java.binaries=target/classes
         env:
