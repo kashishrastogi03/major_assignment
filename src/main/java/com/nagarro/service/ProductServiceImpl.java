@@ -22,27 +22,11 @@ public class ProductServiceImpl implements ProductService {
 
     private final String UPLOAD_DIR = "src/main/webapp/images/";
 
-
     @Override
    public void save(Product product) {
         System.out.println("Saving");
         productDao.save(product);  // JPA/Hibernate will handle insert/update
     }
-
-//    @Override
-//    public void saveProduct(Product product, MultipartFile file) throws IOException {
-//        System.out.println("Saving");
-//        if (!file.isEmpty()) {
-//            String filename = file.getOriginalFilename();
-//            Path path = Paths.get(UPLOAD_DIR + filename);
-//            Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
-//            product.setImage("/images/" + filename);
-//        } else {
-//            product.setImage("/images/default.png"); // fallback
-//        }
-//        System.out.println("hui");
-//        productDao.save(product);
-//    }
 
     @Override
     public void saveProduct(Product product, MultipartFile file) throws IOException {

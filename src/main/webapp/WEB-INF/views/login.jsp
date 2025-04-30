@@ -142,12 +142,10 @@
         }
     </style>
 </head>
-<body onload="showPopup()">
+<body>
 
 <div class="container">
     <h1>LOGIN</h1>
-    <br>
-    <h2>Select Login Type</h2>
     <br>
 
     <div class="button-group">

@@ -1,6 +1,8 @@
 package com.nagarro.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "products")
@@ -10,10 +12,14 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Pattern(regexp = "^[A-Za-z ]+$", message = "Title must contain only letters and spaces")
+
     private String title;
     private int quantity;
     private int size;
-    private String image; // Store image filename
+    private String image;
+    // Store image filename
+    @Size(max = 20, message = "Description cannot exceed 20 characters")
     private String description;
     private int price;
 
@@ -36,9 +42,18 @@ public class Product {
         return description;
     }
 
+    //public void setDescription(String description) {
+     //   this.description = description;
+  //  }
+
     public void setDescription(String description) {
-        this.description = description;
+        if (description != null && description.length() > 200) {
+            this.description = description.substring(0, 200); // truncate
+        } else {
+            this.description = description;
+        }
     }
+
 
 
     public String getImage() { return image; }

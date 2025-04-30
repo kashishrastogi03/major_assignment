@@ -27,51 +27,27 @@ public class ProductController {
         return "product-dashboard";
     }
 
-//    @PostMapping("/add")
-//    @ResponseBody
-//    public ResponseEntity<String> addProduct(@ModelAttribute Product product, @RequestParam("imageFile") MultipartFile file) {
-//     System.out.println("Hello mam");
-//        try {
-//            productService.saveProduct(product, file);
-//            return ResponseEntity.ok("Product added successfully!");
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error adding product.");
-//        }
-//    }
-@PostMapping("/add")
-public String addProduct(@ModelAttribute Product product,
-                         @RequestParam("imageFile") MultipartFile file,
-                         RedirectAttributes redirectAttributes) {
-    try {
-        productService.saveProduct(product, file);  // Store image + save product
-        redirectAttributes.addFlashAttribute("success", "Product added successfully!");
-    } catch (IOException e) {
-        redirectAttributes.addFlashAttribute("error", "Failed to upload image!");
+
+    @PostMapping("/add")
+    public String addProduct(@ModelAttribute Product product,
+                             @RequestParam("imageFile") MultipartFile file,
+                             RedirectAttributes redirectAttributes) {
+        try {
+            productService.saveProduct(product, file);  // Store image + save product
+            redirectAttributes.addFlashAttribute("success", "Product added successfully!");
+        } catch (IOException e) {
+            redirectAttributes.addFlashAttribute("error", "Failed to upload image!");
+        }
+        return "redirect:/product/dashboard";
     }
-    return "redirect:/product/dashboard";
-}
-//    @PostMapping("/product/add")
-//    public String addProduct(@ModelAttribute Product product, RedirectAttributes redirectAttributes) {
-//        productService.save(product);
-//        redirectAttributes.addFlashAttribute("success", "Product added successfully!");
-//        return "redirect:/dashboard"; // Or wherever your product list is shown
-//    }
-//@PostMapping("/product/add")
-//public String addProduct(@RequestParam("title") String title,
-//                         @RequestParam("quantity") int quantity,
-//                         @RequestParam("size") int size,
-//                         @RequestParam("imageFile") MultipartFile imageFile,
-//                         @RequestParam("description") String description,
-//                         @RequestParam("price") double price) {
-//    // logic to save product
-//    return "redirect:/product/dashboard";
-//}
+
     @PostMapping("/product/add")
     public String addProduct(@ModelAttribute Product product, RedirectAttributes redirectAttributes) {
         productService.save(product);
         redirectAttributes.addFlashAttribute("success", "Product added successfully!");
         return "redirect:/product/dashboard";
     }
+
     @PostMapping("/edit")
     @ResponseBody
     public ResponseEntity<String> editProduct(@ModelAttribute Product product, @RequestParam("imageFile") MultipartFile file) {
@@ -83,6 +59,7 @@ public String addProduct(@ModelAttribute Product product,
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating product.");
         }
     }
+
     @DeleteMapping("/delete/{id}")
     @ResponseBody
     public ResponseEntity<String> deleteProduct(@PathVariable int id) {

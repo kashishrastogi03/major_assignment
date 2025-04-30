@@ -117,7 +117,7 @@
 
                     <div class="mb-3">
                         <label>Description</label>
-                        <textarea name="description" id="productDescription" class="form-control" rows="2"></textarea>
+                        <textarea name="description" maxlength="20" id="productDescription" class="form-control" rows="2"></textarea>
                     </div>
 
                     <div class="mb-3">

@@ -18,15 +18,12 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
-
     @PostMapping("/register")
     public String registerUser(@ModelAttribute User user) {
         userService.registerUser(user);
         return "login";
         // return "redirect:/login.jsp?success=registered";  // ✅ Success message for registration
     }
-
-
 
     @PostMapping("/login/user")
     public String userLogin(@RequestParam String username, @RequestParam String password, HttpServletRequest request) {
@@ -40,8 +37,6 @@ public class AuthController {
         return "login";
         // return "redirect:/login.jsp?error=invalid_user";  // ✅ Error message for invalid user login
     }
-
-
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {

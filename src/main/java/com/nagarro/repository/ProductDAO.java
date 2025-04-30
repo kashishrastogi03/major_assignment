@@ -9,6 +9,8 @@ import java.util.List;
 @Repository
 public interface ProductDAO extends JpaRepository<Product, Integer> {
     List<Product> findByTitleIgnoreCaseContaining(String title);
+
     List<Product> findBySize(int size);
+
     List<Product> findByQuantityBetween(int minQuantity, int maxQuantity);
 }
