@@ -29,13 +29,8 @@ jobs:
       - name: Compile and Test with Maven
         run: mvn clean verify
 
-      - name: SonarCloud Scan (Using GitHub Action)
-        uses: sonarsource/sonarcloud-github-action@v2
-        with:
-          organization: kashishrastogi03
-          projectKey: kashishrastogi03_major_assignment
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: SonarCloud Scan (Using Maven)
+        run: mvn sonar:sonar -Dsonar.projectKey=kashishrastogi03_major_assignment -Dsonar.organization=kashishrastogi03 -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
       - name: Upload JUnit Test Results
         if: always()
