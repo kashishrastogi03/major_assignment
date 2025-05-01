@@ -33,13 +33,12 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@v2
         with:
           args: >
-            -Dsonar.projectKey=major-assignment_major-assignment
-            -Dsonar.organization=major-assignment
-            -Dsonar.host.url=https://sonarcloud.io  # This is the URL for SonarCloud
+            -Dsonar.projectKey=kashishrastogi03_major_assignment
+            -Dsonar.organization=kashishrastogi03
+            -Dsonar.host.url=https://sonarcloud.io
             -Dsonar.java.binaries=target/classes
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}   
+          
       - name: Upload JUnit Test Results
         if: always()
         uses: actions/upload-artifact@v4
