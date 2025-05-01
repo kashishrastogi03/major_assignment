@@ -32,7 +32,7 @@ jobs:
       - name: SonarCloud Scan (Using Maven)
         run: mvn sonar:sonar -Dsonar.projectKey=kashishrastogi03_major_assignment -Dsonar.organization=kashishrastogi03 -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
-      - name: Upload JUnit Test Results
+      - name: Upload JUnit Test Results 
         if: always()
         uses: actions/upload-artifact@v4
         with:
