@@ -44,6 +44,18 @@ jobs:
         run: |
           docker build -t my-java-app .
 
+      # Install Grype (No Root)
+      - name: Install Grype
+        run: |
+          mkdir -p ./bin
+          curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b ./bin
+          echo "$(pwd)/bin" >> $GITHUB_PATH
+
+      # Scan Docker Image with Grype
+      - name: Scan Docker Image with Grype
+        run: |
+          grype my-java-app:latest --fail-on high
+
       # Log in to Azure Container Registry
       - name: Login to ACR
         run: |
