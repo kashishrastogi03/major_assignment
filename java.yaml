@@ -35,10 +35,11 @@ jobs:
           args: >
             -Dsonar.projectKey=kashishrastogi03_major_assignment
             -Dsonar.organization=kashishrastogi03
-            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.host.url=https://sonarcloud.io 
             -Dsonar.java.binaries=target/classes
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}   
-          
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
       - name: Upload JUnit Test Results
         if: always()
         uses: actions/upload-artifact@v4
