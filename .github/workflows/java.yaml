@@ -38,6 +38,8 @@ jobs:
           curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b ./bin
           echo "$(pwd)/bin" >> $GITHUB_PATH
 
+      - name: Update Grype DB
+        run: grype db update
       - name: Scan and Generate Grype Report (JSON)
         run: grype my-java-app:latest -o json > grype-report.json
         continue-on-error: true  
