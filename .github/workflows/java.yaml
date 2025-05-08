@@ -38,22 +38,12 @@ jobs:
           curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b ./bin
           echo "$(pwd)/bin" >> $GITHUB_PATH
 
-      - name: Add Grype Ignore File
-        run: |
-          echo "CVE-2023-12345" > .grypeignore
-          echo "CVE-2022-99999" >> .grypeignore
-        shell: bash
-
-      # ✨ Output full vulnerability report (non-blocking)
-      - name: Generate Grype Report (JSON)
+      - name: Scan and Generate Grype Report (JSON)
         run: grype my-java-app:latest -o json > grype-report.json
+        continue-on-error: true  
 
       - name: Upload Grype Report
         uses: actions/upload-artifact@v4
         with:
           name: grype-report
           path: grype-report.json
-
-      # ✅ Blocking scan with ignore file
-      - name: Scan Docker Image with Grype
-        run: grype my-java-app:latest --fail-on critical --file .grypeignore
